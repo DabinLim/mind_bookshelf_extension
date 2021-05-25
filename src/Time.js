@@ -1,0 +1,24 @@
+const time = (value) => {
+    const today = new Date();
+  //   사파리에서도 시간을 적용하기 위해서 년,월,일,시,분,초로 나눴습니다.
+    const timeValue = new Date(value.substring(0,4), value.substring(5,7)-1, value.substring(8,10), value.substring(11,13), value.substring(14,16), value.substring(17,19));
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+    if (betweenTime < 1) return '방금전';
+    if (betweenTime < 60) {
+        return `${betweenTime}분전`;
+    }
+  
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간전`;
+    }
+  
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일전`;
+    }
+  
+    return `${Math.floor(betweenTimeDay / 365)}년전`;
+  }
+  
+  export { time }
